@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>b18cef80-6b6c-4cda-b6a3-bff44302ba6c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Food_Menu</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ConnectionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Request\GetCitiesRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Request\GetCounterRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Request\GetMenuRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Request\GetOrganizationsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ResponseData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Response\Cities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Response\CounterMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Response\Counters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Response\Organizations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OverlayProgressBar.xaml.cs">
+      <DependentUpon>OverlayProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\ChooseCity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\ChooseOrganization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\Counters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\CounterStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Counter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Menu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Organization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\OrganizationStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\DbHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\FileUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\ChooseCityViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\ChooseOrganizationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\CountersViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\Model\CounterItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Utils\Annotations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Utils\NotifyPropertyChangedBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="$(MSBuildThisFileDirectory)OverlayProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>
