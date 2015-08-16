@@ -19,7 +19,7 @@ namespace Food_Menu.Models.Response
     public class FoodMenu
     {
         [JsonProperty("menu_id")]
-        public string MenuId { get; set; }
+        public int MenuId { get; set; }
 
         [JsonProperty("day")]
         public string Day { get; set; }
@@ -34,10 +34,10 @@ namespace Food_Menu.Models.Response
         public string MenuType { get; set; }
 
         [JsonProperty("cost")]
-        public string Cost { get; set; }
+        public double Cost { get; set; }
 
         [JsonProperty("version")]
-        public string Version { get; set; }
+        public int Version { get; set; }
         
         [JsonProperty("items")]
         public List<FoodItem> FoodItems { get; set; }
@@ -45,6 +45,10 @@ namespace Food_Menu.Models.Response
 
     public class CounterMenu
     {
+        [JsonProperty("counter_id")]
+        public int CounterId { get; set; }
+
+        [JsonProperty("menu")]
         public List<FoodMenu> menu { get; set; }
     }
 }

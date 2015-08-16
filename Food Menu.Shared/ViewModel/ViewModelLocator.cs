@@ -34,6 +34,14 @@ namespace Food_Menu.ViewModel
             }
         }
 
+        public ViewMenuViewModel Menus
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ViewMenuViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -41,6 +49,7 @@ namespace Food_Menu.ViewModel
             SimpleIoc.Default.Register<ChooseCityViewModel>();
             SimpleIoc.Default.Register<ChooseOrganizationViewModel>();
             SimpleIoc.Default.Register<CountersViewModel>();
+            SimpleIoc.Default.Register<ViewMenuViewModel>();
         }
     }
 

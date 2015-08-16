@@ -42,4 +42,12 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Command="{Binding DoneCommand}"
+                          Icon="Accept"
+                          IsCompact="True"
+                          Label="Done" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

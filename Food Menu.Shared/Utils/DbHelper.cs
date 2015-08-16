@@ -24,6 +24,8 @@ namespace Food_Menu.Utils
                 SQLiteAsyncConnection conn = new SQLiteAsyncConnection(DB_PATH);
                 await conn.CreateTableAsync<Organization>();
                 await conn.CreateTableAsync<Counter>();
+                await conn.CreateTableAsync<Menu>();
+                await conn.CreateTableAsync<Item>();
             }
             else
             {

@@ -11,12 +11,12 @@ namespace Food_Menu.Models
     public class GetMenuRequest
     {
         [DataMember(Name = "counter")]
-        public string Counter { get; set; }
+        public int Counter { get; set; }
 
         [DataMember(Name = "previous_version")]
-        public string PreviousVersion { get; set; }
+        public int PreviousVersion { get; set; }
 
-        public GetMenuRequest(string counter, string version)
+        public GetMenuRequest(int counter, int version)
         {
             Counter = counter;
             PreviousVersion = version;

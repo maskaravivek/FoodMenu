@@ -31,10 +31,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\ChooseCity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\ChooseOrganization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\Counters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\ViewMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\CounterStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\ItemStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\MenuStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Counter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Menu.cs" />
@@ -44,12 +47,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\FileUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Model\FoodMenuObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Model\MenuItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\ChooseCityViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\ChooseOrganizationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\CountersViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\Model\CounterItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Utils\Annotations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Utils\NotifyPropertyChangedBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

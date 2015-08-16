@@ -10,7 +10,7 @@ namespace Food_Menu.Storage.Models
     [Table("Item")]
     public class Item
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int MenuId { get; set; }
         public string Name { get; set; }

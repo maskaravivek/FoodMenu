@@ -27,6 +27,12 @@ namespace Food_Menu.Storage
                 await sqlConnection.InsertAsync(counter);
             }
         }
+        public async static Task<List<Counter>> GetCounters()
+        {
+            SQLiteAsyncConnection sqlConnection = new SQLiteAsyncConnection(DbHelper.DB_PATH);
+            var collection = await sqlConnection.Table<Counter>().ToListAsync();
+            return collection;
+        }
 
         public async static Task<bool> CounterExists(int counter_id)
         {

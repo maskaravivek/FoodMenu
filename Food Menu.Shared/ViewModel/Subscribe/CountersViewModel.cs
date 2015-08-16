@@ -18,10 +18,15 @@ namespace Food_Menu.ViewModel.Subscribe
     {
         private ObservableCollection<CounterItem> _counters;
         private CounterItem _selectedCounter;
-        
+        public RelayCommand DoneCommand { get; set; }
         public CountersViewModel()
         {
             Counters = new ObservableCollection<CounterItem>();
+            DoneCommand = new RelayCommand(() =>
+            {
+                var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
+                navigationService.Navigate(FileUtils.DestinationType(typeof(Screens.ViewMenu)), null);
+            });
         }
 
         public CounterItem SelectedCounter
@@ -52,6 +57,7 @@ namespace Food_Menu.ViewModel.Subscribe
 
         public async Task FetchCounters(string organizationId)
         {
+            Counters.Clear();
             ResponseData responseData = await ConnectionManager.SendRequestPacket<GetCounterRequest>("getCounters.php", new GetCounterRequest(organizationId));
             if (responseData.ResponseType.Equals(Constants.ErrorString))
             {

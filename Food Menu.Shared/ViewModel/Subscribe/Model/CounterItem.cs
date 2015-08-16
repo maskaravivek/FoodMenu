@@ -82,7 +82,7 @@ namespace Food_Menu.ViewModel.Subscribe.Model
             {
                 Id = CounterObject.CounterId,
                 CounterName = CounterObject.CounterName,
-                MenuVersion = CounterObject.MenuVersion,
+                MenuVersion = 0, //0: no menu added
                 OrganizationId = Organization.Id
             });
         }
