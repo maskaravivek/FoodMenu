@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.UI.Xaml.Controls;
 
 namespace Food_Menu.ViewModel
 {
@@ -33,7 +34,9 @@ namespace Food_Menu.ViewModel
             }
         }
 
-        public abstract void Initialize(object param);
+        //public abstract void Initialize(object param);
+
+        public abstract void Initialize(object param, Page basePage);
 
         public abstract void GoBack();
     }

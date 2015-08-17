@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Request\AddCounterRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Request\AddOrganizationRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Request\GetCitiesRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Request\GetCounterRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Request\GetMenuRequest.cs" />
@@ -28,6 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)OverlayProgressBar.xaml.cs">
       <DependentUpon>OverlayProgressBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Manage\AddCounter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Manage\AddOrganization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\ChooseCity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\ChooseOrganization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\Counters.cs" />
@@ -37,16 +41,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\CounterStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\ItemStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\AppStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\MenuStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Counter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Menu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Organization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\OrganizationStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\AppUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\DbHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\FileUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Manage\AddCounterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Manage\AddOrganizationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Model\FoodMenuObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Model\MenuItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Subscribe\ChooseCityViewModel.cs" />
@@ -64,6 +72,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="$(MSBuildThisFileDirectory)OverlayProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)SharedResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

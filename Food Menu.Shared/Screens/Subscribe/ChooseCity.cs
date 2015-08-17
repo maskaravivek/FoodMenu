@@ -15,7 +15,7 @@ namespace Food_Menu.Screens.Subscribe
             BaseViewModel vm = this.DataContext as BaseViewModel;
             if (vm != null)
             {
-                vm.Initialize(e.Parameter);
+                vm.Initialize(e.Parameter, this);
             }
         }
     }

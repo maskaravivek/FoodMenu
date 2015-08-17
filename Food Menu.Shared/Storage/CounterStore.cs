@@ -26,12 +26,21 @@ namespace Food_Menu.Storage
             {
                 await sqlConnection.InsertAsync(counter);
             }
+            await CounterSubscribed();
         }
         public async static Task<List<Counter>> GetCounters()
         {
             SQLiteAsyncConnection sqlConnection = new SQLiteAsyncConnection(DbHelper.DB_PATH);
             var collection = await sqlConnection.Table<Counter>().ToListAsync();
             return collection;
+        }
+
+        public async static Task<int> CounterSubscribed()
+        {
+            SQLiteAsyncConnection sqlConnection = new SQLiteAsyncConnection(DbHelper.DB_PATH);
+            int counters = await sqlConnection.Table<Counter>().CountAsync();
+            AppStore.AddValue(Constants.CountersSubscribed, counters.ToString());
+            return counters;
         }
 
         public async static Task<bool> CounterExists(int counter_id)
@@ -53,6 +62,7 @@ namespace Food_Menu.Storage
             {
                 await sqlConnection.DeleteAsync(collectionItem);
             }
+            await CounterSubscribed();
         }
     }
 }

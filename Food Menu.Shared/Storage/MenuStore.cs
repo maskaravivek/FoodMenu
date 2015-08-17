@@ -30,8 +30,7 @@ namespace Food_Menu.Storage
         public async static Task<Menu> GetMenu(int counterId)
         {
             string currentDay = DateTime.Today.DayOfWeek.ToString();
-            //TimeSpan currentTime = DateTime.Now.TimeOfDay;
-            System.Diagnostics.Debug.WriteLine(currentDay);
+            TimeSpan currentTime = DateTime.Now.TimeOfDay;
             SQLiteAsyncConnection sqlConnection = new SQLiteAsyncConnection(DbHelper.DB_PATH);
             var collectionItem = await sqlConnection.Table<Menu>().Where(x => x.CounterId == counterId).FirstOrDefaultAsync();
             return collectionItem;

@@ -14,12 +14,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace Food_Menu.ViewModel
 {
     public class ViewMenuViewModel : BaseViewModel
     {
         public RelayCommand NextButtonCommand { get; set; }
+        private bool _isMenuLoadingInitiated = false;
         private ObservableCollection<FoodMenuObject> _foodMenus;
         private FoodMenuObject _selectedMenu;
 
@@ -98,15 +100,25 @@ namespace Food_Menu.ViewModel
         {
             foreach(Storage.Models.Counter counter in subscribedCounters)
             {
-                FetchFreshMenu(counter.Id, counter.MenuVersion);
+                await FetchFreshMenu(counter.Id, counter.MenuVersion);
+            }
+            await DisplayMenus(subscribedCounters);
+        }
+
+        public async Task DisplayMenus(List<Storage.Models.Counter> subscribedCounters)
+        {
+            FoodMenus.Clear();
+            foreach (Storage.Models.Counter counter in subscribedCounters)
+            {
+                await DisplayMenu(counter);
             }
         }
 
-        public async Task DisplayCurrentMenu(List<Storage.Models.Counter> subscribedCounters)
+        private async Task DisplayMenu(Storage.Models.Counter counter)
         {
-            foreach (Storage.Models.Counter counter in subscribedCounters)
+            Storage.Models.Menu menu = await MenuStore.GetMenu(counter.Id);
+            if (menu != null)
             {
-                Storage.Models.Menu menu = await MenuStore.GetMenu(counter.Id);
                 List<Storage.Models.Item> items = await ItemStore.GetItems(menu.MenuId);
                 FoodMenus.Add(new FoodMenuObject(counter.CounterName, menu, items));
             }
@@ -118,11 +130,12 @@ namespace Food_Menu.ViewModel
             navigationService.GoBack();
         }
 
-        public async override void Initialize(object param)
+        public async override void Initialize(object param, Page basePage)
         {
+            _isMenuLoadingInitiated = false;
             List<Storage.Models.Counter> subscribedCounters = await CounterStore.GetCounters();
             UpdateCounterMenus(subscribedCounters);
-            DisplayCurrentMenu(subscribedCounters);
+            DisplayMenus(subscribedCounters);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Food_Menu.Services;
+using Food_Menu.Storage;
 using Food_Menu.Utils;
+using Food_Menu.ViewModel.Utils;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -104,7 +106,15 @@ namespace Food_Menu
 
                 var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
                 navigationService.RootFrame = rootFrame;
-                navigationService.Navigate(typeof(Screens.Subscribe.ChooseCity), e.Arguments);
+                navigationService.Navigate(typeof(Screens.Manage.AddOrganization), e.Arguments);
+                //if (AppUtils.AnyCounterSubscribed())
+                //{ 
+                //    navigationService.Navigate(typeof(Screens.ViewMenu), e.Arguments);
+                //}
+                //else
+                //{
+                //    navigationService.Navigate(typeof(Screens.Subscribe.ChooseCity), e.Arguments);
+                //}
             }
 
             // Ensure the current window is active

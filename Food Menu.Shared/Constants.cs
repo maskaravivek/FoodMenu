@@ -11,5 +11,6 @@ namespace Food_Menu
         public const string SuccessString = "success";
         public const string ErrorString = "error";
         public const string EndPoint = "http://devilsnareapps.com/food/";
+        public const string CountersSubscribed = "countersSubscribed";
     }
 }

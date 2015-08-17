@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace Food_Menu.Screens.Subscribe
+namespace Food_Menu.Screens.Manage
 {
-    public sealed partial class ChooseOrganization : Page
+    public sealed partial class AddCounter : Page
     {
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

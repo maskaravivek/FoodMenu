@@ -1,4 +1,5 @@
 ﻿using Food_Menu.Services;
+using Food_Menu.ViewModel.Manage;
 using Food_Menu.ViewModel.Subscribe;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -42,6 +43,14 @@ namespace Food_Menu.ViewModel
             }
         }
 
+        public AddOrganizationViewModel AddOrg
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddOrganizationViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -50,7 +59,7 @@ namespace Food_Menu.ViewModel
             SimpleIoc.Default.Register<ChooseOrganizationViewModel>();
             SimpleIoc.Default.Register<CountersViewModel>();
             SimpleIoc.Default.Register<ViewMenuViewModel>();
+            SimpleIoc.Default.Register<AddOrganizationViewModel>();
         }
     }
-
 }

@@ -4,40 +4,56 @@ using Food_Menu.Models.Response;
 using Food_Menu.Services;
 using Food_Menu.Utils;
 using Food_Menu.ViewModel.Subscribe.Model;
+using Food_Menu.ViewModel.Utils;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
-namespace Food_Menu.ViewModel.Subscribe
+namespace Food_Menu.ViewModel.Manage
 {
-    public class CountersViewModel : BaseViewModel
+    public class AddCounterViewModel : BaseViewModel
     {
-        private ObservableCollection<CounterItem> _counters;
-        private CounterItem _selectedCounter;
+        private Page _currentPage;
         public RelayCommand DoneCommand { get; set; }
-        public CountersViewModel()
+        private string _organizationId;
+        private string _organizationName;
+        private string _counterName;
+        private ObservableCollection<CounterItem> _counters;
+        public AddCounterViewModel()
         {
-            Counters = new ObservableCollection<CounterItem>();
             DoneCommand = new RelayCommand(() =>
             {
-                var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
-                navigationService.Navigate(FileUtils.DestinationType(typeof(Screens.ViewMenu)), null);
+                AddEntry();
             });
         }
 
-        public CounterItem SelectedCounter
+        public string OrganizationName
         {
-            get { return _selectedCounter; }
+            get { return _organizationName; }
             set
             {
-                if (value != _selectedCounter)
+                if (value != _organizationName)
                 {
-                    _selectedCounter = value;
+                    _organizationName = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public string CounterName
+        {
+            get { return _counterName; }
+            set
+            {
+                if (value != _counterName)
+                {
+                    _counterName = value;
                     RaisePropertyChanged();
                 }
             }
@@ -56,10 +72,10 @@ namespace Food_Menu.ViewModel.Subscribe
             }
         }
 
-        public async Task FetchCounters(string organizationId)
+        public async Task AddEntry()
         {
-            Counters.Clear();
-            ResponseData responseData = await ConnectionManager.SendRequestPacket<GetCounterRequest>("getCounters.php", new GetCounterRequest(organizationId));
+            await OverlayProgressBar.Instance.ShowAndHideAfterTimeOut("Adding organization...", _currentPage);
+            ResponseData responseData = await ConnectionManager.SendRequestPacket<AddCounterRequest>("addCounter.php", new AddCounterRequest(CounterName, _organizationId));
             if (responseData.ResponseType.Equals(Constants.ErrorString))
             {
                 var error = responseData.Payload.ToObject<ErrorResponse>();
@@ -68,17 +84,17 @@ namespace Food_Menu.ViewModel.Subscribe
             else
             {
                 var collection = responseData.Payload.ToObject<Counters>();
+                Counters.Clear();
                 Storage.Models.Organization organization = new Storage.Models.Organization
                 {
-                    Id= collection.OrganizationId,
-                    Name= collection.OrganizationName,
-                    City= collection.OrganizationCity
+                    Id = collection.OrganizationId,
+                    Name = collection.OrganizationName,
+                    City = collection.OrganizationCity
                 };
-                foreach(Counter counter in collection.counters)
+                foreach (Counter counter in collection.counters)
                 {
                     Counters.Add(new CounterItem(counter, organization));
                 }
-                System.Diagnostics.Debug.WriteLine("Counters: " + Counters.Count);
                 await OverlayProgressBar.Instance.HideAndDisplayErrorMessage();
             }
         }
@@ -89,11 +105,9 @@ namespace Food_Menu.ViewModel.Subscribe
             navigationService.GoBack();
         }
 
-        public async override void Initialize(object param, Page basePage)
+        public override void Initialize(object param, Page basePage)
         {
-            await OverlayProgressBar.Instance.ShowAndHideAfterTimeOut("Fetching counters...", basePage);
-            string organizationId = (string)param;
-            await FetchCounters(organizationId);
+            _currentPage = basePage;
         }
     }
 }

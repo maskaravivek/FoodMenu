@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace Food_Menu.ViewModel.Subscribe
 {
@@ -82,8 +83,9 @@ namespace Food_Menu.ViewModel.Subscribe
             navigationService.GoBack();
         }
 
-        public async override void Initialize(object param)
+        public async override void Initialize(object param, Page basePage)
         {
+            await OverlayProgressBar.Instance.ShowAndHideAfterTimeOut("Fetching cities...", basePage);
             await FetchCities();
         }
     }
