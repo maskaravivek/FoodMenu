@@ -24,7 +24,6 @@ namespace Food_Menu.ViewModel.Subscribe
 
         public ChooseCityViewModel()
         {
-            Cities = new ObservableCollection<City>();
             NextButtonCommand = new RelayCommand(() =>
             {
                 var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
@@ -60,7 +59,7 @@ namespace Food_Menu.ViewModel.Subscribe
 
         public async Task FetchCities()
         {
-            ResponseData responseData = await ConnectionManager.SendRequestPacket<GetCitiesRequest>("getCities.php", new GetCitiesRequest("hello world"));
+            ResponseData responseData = await LocationService.GetCities();
             if (responseData.ResponseType.Equals(Constants.ErrorString))
             {
                 var error = responseData.Payload.ToObject<ErrorResponse>();
@@ -69,10 +68,7 @@ namespace Food_Menu.ViewModel.Subscribe
             else
             {
                 var collection = responseData.Payload.ToObject<Cities>();
-                foreach (City city in collection.cities)
-                {
-                    Cities.Add(city);
-                }
+                Cities= new ObservableCollection<City>(collection.cities);
                 await OverlayProgressBar.Instance.HideAndDisplayErrorMessage();
             }
         }

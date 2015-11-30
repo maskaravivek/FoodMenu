@@ -36,7 +36,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\ChooseOrganization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Subscribe\Counters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ViewMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\CounterService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LocationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MenuService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\OrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\CounterStore.cs" />
@@ -52,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\DbHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\FileUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\JsonHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\NetworkAvailability.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Manage\AddCounterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Manage\AddOrganizationViewModel.cs" />
@@ -72,10 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="$(MSBuildThisFileDirectory)OverlayProgressBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)SharedResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

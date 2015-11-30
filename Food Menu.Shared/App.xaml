@@ -8,12 +8,6 @@
     <Application.Resources>
         <SolidColorBrush x:Key="ThemeColor" Color="Blue" />
         <vm:ViewModelLocator x:Key="Locator" />
-        <ResourceDictionary x:Key="ResourceDictionary">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SharedResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-
     </Application.Resources>
 
 </Application>

@@ -74,7 +74,7 @@ namespace Food_Menu.ViewModel.Manage
 
         public async Task AddEntry()
         {
-            await OverlayProgressBar.Instance.ShowAndHideAfterTimeOut("Adding organization...", _currentPage);
+            await OverlayProgressBar.Instance.ShowAndHideAfterTimeOut("Adding counter...", _currentPage);
             ResponseData responseData = await ConnectionManager.SendRequestPacket<AddCounterRequest>("addCounter.php", new AddCounterRequest(CounterName, _organizationId));
             if (responseData.ResponseType.Equals(Constants.ErrorString))
             {

@@ -51,6 +51,14 @@ namespace Food_Menu.ViewModel
             }
         }
 
+        public AddCounterViewModel AddCounter
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddCounterViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -60,6 +68,7 @@ namespace Food_Menu.ViewModel
             SimpleIoc.Default.Register<CountersViewModel>();
             SimpleIoc.Default.Register<ViewMenuViewModel>();
             SimpleIoc.Default.Register<AddOrganizationViewModel>();
+            SimpleIoc.Default.Register<AddCounterViewModel>();
         }
     }
 }

@@ -23,7 +23,6 @@ namespace Food_Menu.ViewModel.Subscribe
 
         public ChooseOrganizationViewModel()
         {
-            Organizations = new ObservableCollection<Organization>();
             NextButtonCommand = new RelayCommand(() =>
             {
                 var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
@@ -59,7 +58,7 @@ namespace Food_Menu.ViewModel.Subscribe
 
         public async Task FetchOrganizations(string city)
         {
-            ResponseData responseData = await ConnectionManager.SendRequestPacket<GetOrganizationsRequest>("getOrganizations.php", new GetOrganizationsRequest(city));
+            ResponseData responseData = await OrganizationService.GetOrganizationsByCity(city);
             if (responseData.ResponseType.Equals(Constants.ErrorString))
             {
                 var error = responseData.Payload.ToObject<ErrorResponse>();
@@ -68,10 +67,7 @@ namespace Food_Menu.ViewModel.Subscribe
             else
             {
                 var collection = responseData.Payload.ToObject<Organizations>();
-                foreach (Organization org in collection.organizations)
-                {
-                    Organizations.Add(org);
-                }
+                Organizations= new ObservableCollection<Organization>(collection.organizations);
                 await OverlayProgressBar.Instance.HideAndDisplayErrorMessage();
             }
         }

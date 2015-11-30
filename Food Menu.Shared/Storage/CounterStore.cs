@@ -43,10 +43,10 @@ namespace Food_Menu.Storage
             return counters;
         }
 
-        public async static Task<bool> CounterExists(int counter_id)
+        public async static Task<bool> CounterExists(int counterId)
         {
             SQLiteAsyncConnection sqlConnection = new SQLiteAsyncConnection(DbHelper.DB_PATH);
-            var collectionItem = await sqlConnection.Table<Counter>().Where(x => x.Id == counter_id).FirstOrDefaultAsync();
+            var collectionItem = await sqlConnection.Table<Counter>().Where(x => x.Id == counterId).FirstOrDefaultAsync();
             if (collectionItem != null)
             {
                 return true;
@@ -54,10 +54,10 @@ namespace Food_Menu.Storage
             return false;
         }
 
-        public async static Task DeleteCounter(int counter_id)
+        public async static Task DeleteCounter(int counterId)
         {
             SQLiteAsyncConnection sqlConnection = new SQLiteAsyncConnection(DbHelper.DB_PATH);
-            var collectionItem = await sqlConnection.Table<Counter>().Where(x => x.Id == counter_id).FirstOrDefaultAsync();
+            var collectionItem = await sqlConnection.Table<Counter>().Where(x => x.Id == counterId).FirstOrDefaultAsync();
             if (collectionItem != null)
             {
                 await sqlConnection.DeleteAsync(collectionItem);

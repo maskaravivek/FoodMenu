@@ -63,7 +63,7 @@ namespace Food_Menu.ViewModel
 
         public async Task FetchFreshMenu(int counter, int version)
         {
-            ResponseData responseData = await ConnectionManager.SendRequestPacket<GetMenuRequest>("getMenu.php", new GetMenuRequest(counter, version));
+            ResponseData responseData = await MenuService.GetMenu(counter, version);
             if (responseData.ResponseType.Equals(Constants.SuccessString))
             {
                 var collection = responseData.Payload.ToObject<CounterMenu>();

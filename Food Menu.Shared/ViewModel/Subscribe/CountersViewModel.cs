@@ -9,6 +9,7 @@ using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
@@ -22,7 +23,6 @@ namespace Food_Menu.ViewModel.Subscribe
         public RelayCommand DoneCommand { get; set; }
         public CountersViewModel()
         {
-            Counters = new ObservableCollection<CounterItem>();
             DoneCommand = new RelayCommand(() =>
             {
                 var navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
@@ -58,8 +58,7 @@ namespace Food_Menu.ViewModel.Subscribe
 
         public async Task FetchCounters(string organizationId)
         {
-            Counters.Clear();
-            ResponseData responseData = await ConnectionManager.SendRequestPacket<GetCounterRequest>("getCounters.php", new GetCounterRequest(organizationId));
+            ResponseData responseData = await CounterService.GetCountersByOrganization(organizationId);
             if (responseData.ResponseType.Equals(Constants.ErrorString))
             {
                 var error = responseData.Payload.ToObject<ErrorResponse>();
@@ -74,10 +73,8 @@ namespace Food_Menu.ViewModel.Subscribe
                     Name= collection.OrganizationName,
                     City= collection.OrganizationCity
                 };
-                foreach(Counter counter in collection.counters)
-                {
-                    Counters.Add(new CounterItem(counter, organization));
-                }
+
+                Counters= new ObservableCollection<CounterItem>(collection.counters.Select(s=> new CounterItem(s, organization)));
                 System.Diagnostics.Debug.WriteLine("Counters: " + Counters.Count);
                 await OverlayProgressBar.Instance.HideAndDisplayErrorMessage();
             }

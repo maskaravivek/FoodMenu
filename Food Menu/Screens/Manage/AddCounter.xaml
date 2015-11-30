@@ -28,8 +28,9 @@
                                     Mode=TwoWay}" />
             <Button Grid.Column="1"
                     Width="72"
-                    Height="72"
-                    Margin="6" />
+                    Margin="6"
+                    Command="{Binding DoneCommand}"
+                    Content="Add" />
         </Grid>
         <ListView Grid.Row="2"
                   Margin="12"
